@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -xe
 
+BASEDIR="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
 rm -rf ./build && mkdir ./build
-emcc main.cc events.cc camera.cc -o ./build/index.html \
+emcc ${BASEDIR}/src/main.cc ${BASEDIR}/src/events.cc ${BASEDIR}/src/camera.cc -o ${BASEDIR}/build/index.html \
   -std=c++14 \
   -s GL_DEBUG=1 \
   -s FULL_ES2=1 \
