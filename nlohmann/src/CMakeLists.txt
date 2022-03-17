@@ -1,0 +1,7 @@
+PROJECT(nlohmann_test)
+cmake_minimum_required(VERSION 3.8)
+
+AUX_SOURCE_DIRECTORY(. SRC_LIST) #将./下的所有*.cpp加入到SRC_LIST中
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../build)
+ADD_EXECUTABLE(main ${SRC_LIST})
+
