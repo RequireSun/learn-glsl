@@ -11,38 +11,27 @@
 
 class MapTestBind {
 public:
-  void set(std::string path, std::string decrypt_key) {
-    GlobalSet(path, decrypt_key);
+  void GlobalSet(std::string path, std::string decrypt_key) {
+    _GlobalSet(path, decrypt_key);
   }
-  std::string get(std::string path) {
-    return GlobalGet(path);
+  std::string GlobalGet(std::string path) {
+    return _GlobalGet(path);
   }
-  void wrongSet(std::string path, std::string decrypt_key) {
-//    DecryptAlbum::set(path, decrypt_key);
-    emscripten_sync_run_in_main_runtime_thread(
-        EM_FUNC_SIG_VII,
-        (void *)&SDecryptAlbumSet,
-        path.c_str(),
-        decrypt_key.c_str()
-    );
+  void NamedSet(std::string path, std::string decrypt_key) {
+    DecryptAlbum::set(path, decrypt_key);
   }
-  std::string wrongGet(std::string path) {
-//    return DecryptAlbum::get(path);
-    char* res = (char *)emscripten_sync_run_in_main_runtime_thread(
-        EM_FUNC_SIG_II, (void *)&SDecryptAlbumGet, path.c_str());
-    std::string decrypt_key(res);
-    delete res;
-    return decrypt_key;
+  std::string NamedGet(std::string path) {
+    return DecryptAlbum::get(path);
   }
 };
 
 EMSCRIPTEN_BINDINGS(map_test_embind) {
     emscripten::class_<MapTestBind>("MapTestBind")
         .constructor<>()
-        .function("set", &MapTestBind::set)
-        .function("get", &MapTestBind::get)
-        .function("wrongSet", &MapTestBind::wrongSet)
-        .function("wrongGet", &MapTestBind::wrongGet)
+        .function("GlobalSet", &MapTestBind::GlobalSet)
+        .function("GlobalGet", &MapTestBind::GlobalGet)
+        .function("NamedSet", &MapTestBind::NamedSet)
+        .function("NamedGet", &MapTestBind::NamedGet)
     ;
 }
 
