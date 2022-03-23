@@ -17,10 +17,10 @@ public:
     return _GlobalGet(path);
   }
   void NamedSet(std::string path, std::string decrypt_key) {
-    DecryptAlbum::set(path, decrypt_key);
+    ns::DecryptAlbum::set(path, decrypt_key);
   }
   std::string NamedGet(std::string path) {
-    return DecryptAlbum::get(path);
+    return ns::DecryptAlbum::get(path);
   }
 };
 

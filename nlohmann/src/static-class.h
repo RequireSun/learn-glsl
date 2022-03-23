@@ -5,6 +5,8 @@
 #ifndef LEARN_GLSL_STATIC_CLASS_H
 #define LEARN_GLSL_STATIC_CLASS_H
 
+namespace ns {
+
 static std::map<std::string, std::string> m_map;
 class DecryptAlbum {
 public:
@@ -17,5 +19,7 @@ public:
     return ret;
   }
 };
+
+}
 
 #endif //LEARN_GLSL_STATIC_CLASS_H
