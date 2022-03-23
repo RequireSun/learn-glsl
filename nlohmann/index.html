@@ -8,6 +8,46 @@
     <title>Document</title>
 </head>
 <body>
-<script src="build/index.js"></script>
+<script src="build/index.js" crossorigin="anonymous"></script>
+<script>
+    if (!Module) {
+        Module = {};
+    }
+    Module.onRuntimeInitialized = function () {
+        const test = new Module.MapTestBind();
+        test.set('1', '1');
+        test.set('2', '2');
+        test.set('3', '3');
+        test.set('4', '4');
+        test.set('5', '5');
+        test.set('6', '6');
+        test.set('7', '7');
+        test.set('8', '8');
+        console.log(test.get('1'));
+        console.log(test.get('2'));
+        console.log(test.get('3'));
+        console.log(test.get('4'));
+        console.log(test.get('5'));
+        console.log(test.get('6'));
+        console.log(test.get('7'));
+        console.log(test.get('8'));
+        test.wrongSet('1', '1');
+        test.wrongSet('2', '2');
+        test.wrongSet('3', '3');
+        test.wrongSet('4', '4');
+        test.wrongSet('5', '5');
+        test.wrongSet('6', '6');
+        test.wrongSet('7', '7');
+        test.wrongSet('8', '8');
+        console.log(test.wrongGet('1'));
+        console.log(test.wrongGet('2'));
+        console.log(test.wrongGet('3'));
+        console.log(test.wrongGet('4'));
+        console.log(test.wrongGet('5'));
+        console.log(test.wrongGet('6'));
+        console.log(test.wrongGet('7'));
+        console.log(test.wrongGet('8'));
+    }
+</script>
 </body>
 </html>
